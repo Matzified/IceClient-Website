@@ -52,7 +52,7 @@ export function Navbar({ mcProfile, setMcProfile }) {
     <header className={scrolled ? 'scrolled' : ''}>
       <div className="container nav-content">
         <Link to="/" className="logo animate-on-scroll slide-right" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Snowflake size={32} color="#00e5ff" />
+          <img src="/icon.png" alt="Crystal Icon" style={{ height: '32px', objectFit: 'contain' }} />
           <img src="/logo.png" alt="Ice Client Logo" style={{ height: '32px' }} />
         </Link>
         <div className="nav-links animate-on-scroll fade-down delay-100">
