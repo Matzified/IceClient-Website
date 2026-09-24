@@ -216,7 +216,8 @@ function Hero() {
           <div className="badge-glow animate-on-scroll fade-down delay-100">
             <span>ICECLIENT V3</span>
           </div>
-          <h1 className="hero-title mc-3d-text animate-on-scroll slide-right">
+          <img src="/logo.png" alt="Ice Client Logo" className="animate-on-scroll slide-right" style={{ maxWidth: '400px', marginBottom: '20px' }} />
+          <h1 className="hero-title animate-on-scroll slide-right">
             Shatter <br />
             The <span className="highlight-glitch" data-text="Limits.">Limits.</span>
           </h1>

@@ -53,7 +53,7 @@ export function Navbar({ mcProfile, setMcProfile }) {
       <div className="container nav-content">
         <Link to="/" className="logo animate-on-scroll slide-right" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Snowflake size={32} color="#00e5ff" />
-          <span className="mc-3d-text">ICE CLIENT</span>
+          <img src="/logo.png" alt="Ice Client Logo" style={{ height: '32px' }} />
         </Link>
         <div className="nav-links animate-on-scroll fade-down delay-100">
           <Link to="/">Home</Link>
