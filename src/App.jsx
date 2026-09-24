@@ -13,6 +13,8 @@ import { Footer } from './components/Footer';
 import './index.css';
 import './App.css'; // Just in case there are styles
 
+import SnowParticles from './components/SnowParticles';
+
 function App() {
   const [mcProfile, setMcProfile] = useState(null);
 
@@ -20,6 +22,7 @@ function App() {
     <>
       <div className="bg-gradient"></div>
       <div className="snow-overlay"></div>
+      <SnowParticles />
       
       <Navbar mcProfile={mcProfile} setMcProfile={setMcProfile} />
       
