@@ -23,9 +23,7 @@ function Hero() {
             ICECLIENT V3 IS LIVE
           </div>
           
-          <h1 className="animate-on-scroll" style={{ marginBottom: '2rem' }}>
-            <span className="mc-3d-text" style={{ fontSize: '4rem', lineHeight: '1.1' }}>ICE CLIENT</span>
-          </h1>
+          <img src="/logo.png" alt="Ice Client Logo" className="animate-on-scroll" style={{ maxWidth: '400px', marginBottom: '2rem' }} />
           
           <h1 className="section-title animate-on-scroll delay-100" style={{ textAlign: 'left', marginBottom: '1.5rem', fontSize: '4rem', lineHeight: 1.1 }}>
             Shatter <br /> The <span className="highlight">Limits.</span>
