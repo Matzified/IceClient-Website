@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export function Terms() {
   return (
     <div className="container" style={{ paddingTop: '8rem', paddingBottom: '4rem', minHeight: '100vh', position: 'relative', zIndex: 2 }}>
-      <h1 className="mc-3d-text" style={{ fontSize: '3rem', marginBottom: '2rem' }}>Terms of Service & Privacy Policy</h1>
+      <img src="/terms.png" alt="Terms and Policy" className="animate-on-scroll fade-down" style={{ maxWidth: '600px', width: '100%', marginBottom: '2rem' }} />
       
       <div style={{ background: 'rgba(7, 11, 21, 0.6)', border: '1px solid rgba(0, 229, 255, 0.2)', padding: '3rem', borderRadius: '4px', backdropFilter: 'blur(10px)' }}>
         <h2 style={{ color: 'var(--accent-ice)', marginBottom: '1rem', fontFamily: 'var(--font-heading)' }}>1. Acceptance of Terms</h2>

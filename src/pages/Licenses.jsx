@@ -31,7 +31,7 @@ export function Licenses() {
 
   return (
     <div className="container" style={{ paddingTop: '8rem', paddingBottom: '4rem', minHeight: '100vh', position: 'relative', zIndex: 2 }}>
-      <h1 className="mc-3d-text" style={{ fontSize: '3rem', marginBottom: '2rem' }}>Third Party Licenses</h1>
+      <img src="/license.png" alt="Third Party Licenses" className="animate-on-scroll fade-down" style={{ maxWidth: '700px', width: '100%', marginBottom: '2rem' }} />
       <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem' }}>IceClient is made possible thanks to the following open-source software:</p>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
