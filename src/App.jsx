@@ -5,6 +5,8 @@ import { Home } from './pages/Home';
 import { Dashboard } from './pages/Dashboard';
 import { Settings } from './pages/Settings';
 import { PlayerProfile } from './pages/PlayerProfile';
+import { Features } from './pages/Features';
+import { Performance } from './pages/Performance';
 import './index.css';
 import './App.css'; // Just in case there are styles
 
@@ -20,6 +22,8 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/performance" element={<Performance />} />
         <Route path="/dashboard" element={<Dashboard mcProfile={mcProfile} setMcProfile={setMcProfile} />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/player/:username" element={<PlayerProfile />} />

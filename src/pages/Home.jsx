@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Download, ChevronRight, Zap, Shield, Search, Package, Layers, Rocket, Crosshair } from 'lucide-react';
+import { Download, ChevronRight, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 function ParticleBackground() {
@@ -105,80 +105,7 @@ function ParticleBackground() {
   return <canvas ref={canvasRef} className="interactive-canvas-bg" />;
 }
 
-function FpsCalculator() {
-  const [currentFps, setCurrentFps] = useState(60);
-  const [displayFps, setDisplayFps] = useState(192);
-  const requestRef = useRef();
-  
-  useEffect(() => {
-    const targetFps = Math.floor(currentFps * 3.2);
-    let startTimestamp = null;
-    const duration = 1200;
-    const startValue = displayFps;
 
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      
-      const easeProgress = 1 - Math.pow(1 - progress, 4); // Quartic ease out
-      const newDisplay = Math.floor(startValue + (targetFps - startValue) * easeProgress);
-      
-      setDisplayFps(newDisplay);
-      
-      if (progress < 1) {
-        requestRef.current = window.requestAnimationFrame(step);
-      }
-    };
-    
-    requestRef.current = window.requestAnimationFrame(step);
-    return () => cancelAnimationFrame(requestRef.current);
-  }, [currentFps]); // startValue handled internally in closure per effect run
-
-  return (
-    <div className="fps-calculator-widget animate-on-scroll fade-up delay-300">
-      <div className="fps-calc-header">
-        <Crosshair className="accent-icon" size={24} />
-        <h3>Hardware Speculator</h3>
-      </div>
-      
-      <div className="fps-slider-wrapper">
-        <div className="fps-slider-labels">
-          <label>Current FPS</label>
-          <span className="fps-badge">{currentFps}</span>
-        </div>
-        <input 
-          type="range" 
-          min="15" 
-          max="360" 
-          value={currentFps} 
-          onChange={(e) => setCurrentFps(parseInt(e.target.value))}
-          className="custom-range-slider"
-        />
-        <div className="slider-ticks">
-          <span>Low</span>
-          <span>Avg</span>
-          <span>High</span>
-        </div>
-      </div>
-
-      <div className="fps-result-wrapper">
-        <div className="fps-result-content">
-          <span className="result-label">Projected IceClient FPS</span>
-          <div className="projected-fps-container">
-            <span className="projected-fps-glow">{displayFps}</span>
-            <span className="projected-fps">{displayFps}</span>
-          </div>
-        </div>
-        <div className="fps-boost-pill-container">
-          <div className="fps-boost-pill">
-            <Zap size={16} />
-            <span>+{Math.floor((displayFps - currentFps) / currentFps * 100)}% BOOST</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Hero() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -246,78 +173,28 @@ function Hero() {
                 Download Client
               </span>
             </button>
-            <a href="#features" className="btn btn-outline diamond-cut">
+            <button onClick={() => navigate('/features')} className="btn btn-outline diamond-cut">
               <span className="btn-content">
                 Explore Tech <ChevronRight size={20} />
               </span>
-            </a>
+            </button>
           </div>
         </div>
 
         <div className="hero-interactive">
-          <FpsCalculator />
+          <div className="hero-showcase animate-on-scroll slide-left delay-300" style={{ width: '100%', height: '400px', background: 'rgba(10, 17, 32, 0.6)', borderRadius: '12px', border: '1px solid rgba(0, 229, 255, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+            <h3 style={{ color: 'var(--text-primary)', marginBottom: '1rem' }}>Ready to Dominate?</h3>
+            <button onClick={() => navigate('/performance')} className="btn btn-primary diamond-cut">
+              Check Hardware Potential
+            </button>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function Features() {
-  const features = [
-    {
-      icon: <Rocket size={32} />,
-      title: "Hyper-Threaded",
-      desc: "Engineered from the ground up to squeeze every frame out of your hardware. Play smoother than ever before.",
-      animation: "fade-up"
-    },
-    {
-      icon: <Package size={32} />,
-      title: "Bespoke Cosmetics",
-      desc: "Express yourself with cloaks, wings, and emotes that seamlessly sync across the entire IceClient network.",
-      animation: "fade-up"
-    },
-    {
-      icon: <Layers size={32} />,
-      title: "Modular Overlay",
-      desc: "Fully customize your HUD with keystrokes, armor status, potion effects, and more. A beautiful overlay that stays out of your way.",
-      animation: "fade-up"
-    },
-    {
-      icon: <Shield size={32} />,
-      title: "Kernel-Level Auth",
-      desc: "Play on our partnered servers with complete peace of mind, knowing the playing field is entirely level.",
-      animation: "fade-up"
-    }
-  ];
 
-  return (
-    <section id="features" className="bespoke-features container">
-      <div className="section-header">
-        <h2 className="section-title animate-on-scroll fade-up">Architected for <span className="highlight-neon">Dominance</span></h2>
-        <div className="section-line animate-on-scroll slide-right"></div>
-      </div>
-      
-      <div className="bespoke-features-grid">
-        {features.map((f, i) => (
-          <div 
-            key={i} 
-            className={`bespoke-feature-card animate-on-scroll ${f.animation} delay-${(i + 1) * 100}`}
-          >
-            <div className="feature-hex-icon">
-              <svg viewBox="0 0 100 100" className="hex-bg">
-                <polygon points="50 3, 93 25, 93 75, 50 97, 7 75, 7 25" fill="rgba(10,17,32,0.8)" stroke="rgba(0,229,255,0.4)" strokeWidth="2"/>
-              </svg>
-              <div className="icon-inner">{f.icon}</div>
-            </div>
-            <h3 className="feature-title">{f.title}</h3>
-            <p className="feature-desc">{f.desc}</p>
-            <div className="card-glint"></div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 export function Home() {
   useEffect(() => {
@@ -340,7 +217,6 @@ export function Home() {
     <main className="bespoke-main">
       <ParticleBackground />
       <Hero />
-      <Features />
     </main>
   );
 }

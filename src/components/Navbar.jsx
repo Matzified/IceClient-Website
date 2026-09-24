@@ -57,7 +57,8 @@ export function Navbar({ mcProfile, setMcProfile }) {
         </Link>
         <div className="nav-links animate-on-scroll fade-down delay-100">
           <Link to="/">Home</Link>
-          <a href="/#features">Features</a>
+          <Link to="/features">Features</Link>
+          <Link to="/performance">Performance</Link>
         </div>
         <div className="nav-actions animate-on-scroll slide-left delay-200">
           {isLoggedIn ? (
