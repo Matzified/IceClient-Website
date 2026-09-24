@@ -31,7 +31,8 @@
 
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-primary);
+  background: radial-gradient(circle at top, #061b29, var(--bg-primary) 60%);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -106,6 +107,19 @@ header.scrolled {
 .ms-logo {
   width: 18px;
   height: 18px;
+}
+
+.mc-3d-text {
+  font-size: inherit;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, #00d2ff 0%, #ffffff 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px black;
+  filter: drop-shadow(4px 4px 0px rgba(50,50,50,1)) drop-shadow(6px 6px 0px black);
 }
 
 /* Animations */
