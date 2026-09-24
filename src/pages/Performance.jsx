@@ -37,7 +37,7 @@ export function Performance() {
           entry.target.classList.add('is-visible');
         }
       });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
       observer.observe(el);
@@ -47,53 +47,51 @@ export function Performance() {
   }, []);
 
   return (
-    <main className="bespoke-main" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '60px' }}>
+    <main className="main-content" style={{ display: 'flex', alignItems: 'center', minHeight: 'calc(100vh - 200px)' }}>
       <div className="container" style={{ width: '100%' }}>
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="section-title animate-on-scroll fade-up">Unleash Your <span className="highlight-neon">Hardware</span></h2>
-          <p className="hero-subtitle animate-on-scroll fade-up delay-100" style={{ maxWidth: '600px', margin: '1rem auto' }}>
-            Calculate your projected FPS with IceClient's hyper-threaded rendering engine.
+        <div className="section-header animate-on-scroll">
+          <h2 className="section-title">Unleash Your <span className="highlight">Hardware</span></h2>
+          <p className="section-subtitle">
+            Calculate your projected FPS with IceClient's custom rendering engine.
           </p>
         </div>
         
-        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <div className="fps-calculator-widget animate-on-scroll fade-up delay-300">
-            <div className="fps-calc-header">
-              <Crosshair className="accent-icon" size={24} />
-              <h3>Hardware Speculator</h3>
+        <div style={{ maxWidth: '500px', margin: '0 auto' }}>
+          <div className="card animate-on-scroll delay-100" style={{ padding: '2.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border-color)' }}>
+              <Crosshair size={24} style={{ color: 'var(--accent-primary)' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 600 }}>Hardware Speculator</h3>
             </div>
             
-            <div className="fps-slider-wrapper">
-              <div className="fps-slider-labels">
-                <label>Current FPS</label>
-                <span className="fps-badge">{currentFps}</span>
+            <div style={{ marginBottom: '3rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontWeight: 500 }}>
+                <label style={{ color: 'var(--text-secondary)' }}>Current Vanilla FPS</label>
+                <span style={{ color: 'var(--text-primary)' }}>{currentFps}</span>
               </div>
+              
               <input 
                 type="range" 
                 min="15" 
                 max="360" 
                 value={currentFps} 
                 onChange={(e) => setCurrentFps(parseInt(e.target.value))}
-                className="custom-range-slider"
               />
-              <div className="slider-ticks">
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.75rem', fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 <span>Low</span>
                 <span>Avg</span>
                 <span>High</span>
               </div>
             </div>
 
-            <div className="fps-result-wrapper">
-              <div className="fps-result-content">
-                <span className="result-label">Projected IceClient FPS</span>
-                <div className="projected-fps-container">
-                  <span className="projected-fps-glow">{displayFps}</span>
-                  <span className="projected-fps">{displayFps}</span>
-                </div>
+            <div style={{ background: 'var(--bg-secondary)', padding: '2rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', textAlign: 'center', position: 'relative' }}>
+              <span style={{ display: 'block', fontSize: '0.875rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>Projected FPS</span>
+              <div style={{ fontSize: '4.5rem', fontWeight: 700, lineHeight: 1, letterSpacing: '-0.02em', background: 'linear-gradient(to bottom right, #fff, #999)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                {displayFps}
               </div>
-              <div className="fps-boost-pill-container">
-                <div className="fps-boost-pill">
-                  <Zap size={16} />
+              
+              <div style={{ position: 'absolute', bottom: '-12px', left: '50%', transform: 'translateX(-50%)' }}>
+                <div style={{ background: 'var(--text-primary)', color: 'var(--bg-primary)', padding: '0.25rem 1rem', borderRadius: '99px', fontSize: '0.875rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px', whiteSpace: 'nowrap', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+                  <Zap size={14} />
                   <span>+{Math.floor((displayFps - currentFps) / currentFps * 100)}% BOOST</span>
                 </div>
               </div>

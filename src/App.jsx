@@ -7,6 +7,9 @@ import { Settings } from './pages/Settings';
 import { PlayerProfile } from './pages/PlayerProfile';
 import { Features } from './pages/Features';
 import { Performance } from './pages/Performance';
+import { Terms } from './pages/Terms';
+import { Licenses } from './pages/Licenses';
+import { Footer } from './components/Footer';
 import './index.css';
 import './App.css'; // Just in case there are styles
 
@@ -27,13 +30,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard mcProfile={mcProfile} setMcProfile={setMcProfile} />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/player/:username" element={<PlayerProfile />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/licenses" element={<Licenses />} />
       </Routes>
       
-      <footer style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--text-secondary)', borderTop: '1px solid var(--border-light)', marginTop: 'auto' }}>
-        <div className="container animate-on-scroll zoom-in">
-          <p>&copy; {new Date().getFullYear()} IceClient. All rights reserved. Not affiliated with Mojang AB or Microsoft Corp.</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

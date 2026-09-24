@@ -1,37 +1,32 @@
 import React, { useEffect } from 'react';
-import { Shield, Package, Layers, Rocket, Zap, Settings2 } from 'lucide-react';
+import { Shield, Package, Layers, Rocket, Zap } from 'lucide-react';
 
 export function Features() {
   const features = [
     {
-      icon: <Rocket size={32} />,
-      title: "Hyper-Threaded",
+      icon: <Rocket size={24} className="highlight" />,
+      title: "Hyper-Threaded Engine",
       desc: "Engineered from the ground up to squeeze every frame out of your hardware. Play smoother than ever before.",
-      animation: "fade-up"
     },
     {
-      icon: <Package size={32} />,
+      icon: <Package size={24} className="highlight" />,
       title: "Bespoke Cosmetics",
-      desc: "Express yourself with cloaks, wings, and emotes that seamlessly sync across the entire IceClient network.",
-      animation: "fade-up"
+      desc: "Express yourself with cloaks, wings, and emotes that seamlessly sync across the entire network.",
     },
     {
-      icon: <Layers size={32} />,
+      icon: <Layers size={24} className="highlight" />,
       title: "Modular Overlay",
-      desc: "Fully customize your HUD with keystrokes, armor status, potion effects, and more. A beautiful overlay that stays out of your way.",
-      animation: "fade-up"
+      desc: "Fully customize your HUD with keystrokes, armor status, and potion effects. A beautiful overlay that stays out of your way.",
     },
     {
-      icon: <Shield size={32} />,
+      icon: <Shield size={24} className="highlight" />,
       title: "Kernel-Level Auth",
       desc: "Play on our partnered servers with complete peace of mind, knowing the playing field is entirely level.",
-      animation: "fade-up"
     },
     {
-      icon: <Zap size={32} />,
-      title: "Anti-Cheat",
+      icon: <Zap size={24} className="highlight" />,
+      title: "Anti-Cheat Integration",
       desc: "Deep integration with server-side checks and internal tamper protection for the ultimate fair play environment.",
-      animation: "fade-up"
     }
   ];
 
@@ -42,7 +37,7 @@ export function Features() {
           entry.target.classList.add('is-visible');
         }
       });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
       observer.observe(el);
@@ -52,28 +47,27 @@ export function Features() {
   }, []);
 
   return (
-    <main className="bespoke-main">
-      <section id="features" className="bespoke-features container" style={{ marginTop: '100px' }}>
-        <div className="section-header">
-          <h2 className="section-title animate-on-scroll fade-up">Architected for <span className="highlight-neon">Dominance</span></h2>
-          <div className="section-line animate-on-scroll slide-right"></div>
+    <main className="main-content">
+      <section className="container">
+        <div className="section-header animate-on-scroll">
+          <h2 className="section-title">Architected for <span className="highlight">Dominance</span></h2>
+          <p className="section-subtitle">
+            Every feature is hand-crafted to give you the competitive edge, without cluttering your screen.
+          </p>
         </div>
         
-        <div className="bespoke-features-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
           {features.map((f, i) => (
             <div 
               key={i} 
-              className={`bespoke-feature-card animate-on-scroll ${f.animation} delay-${(i + 1) * 100}`}
+              className="card animate-on-scroll"
+              style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <div className="feature-hex-icon">
-                <svg viewBox="0 0 100 100" className="hex-bg">
-                  <polygon points="50 3, 93 25, 93 75, 50 97, 7 75, 7 25" fill="rgba(10,17,32,0.8)" stroke="rgba(0,229,255,0.4)" strokeWidth="2"/>
-                </svg>
-                <div className="icon-inner">{f.icon}</div>
+              <div style={{ marginBottom: '1.5rem', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--border-color)' }}>
+                {f.icon}
               </div>
-              <h3 className="feature-title">{f.title}</h3>
-              <p className="feature-desc">{f.desc}</p>
-              <div className="card-glint"></div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.75rem' }}>{f.title}</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>{f.desc}</p>
             </div>
           ))}
         </div>
