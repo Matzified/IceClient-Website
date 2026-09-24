@@ -287,3 +287,141 @@ input[type="range"]::-webkit-slider-thumb:hover {
   padding-top: 100px;
   padding-bottom: 100px;
 }
+
+/* Features Page Animations & Interactivity */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover effects */
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 210, 255, 0.1), 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Expanded state */
+.feature-card.expanded {
+  transform: translateY(-4px) scale(1.01);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 210, 255, 0.08);
+  grid-column: span 1; /* By default stay same width, just expand vertically */
+}
+
+/* Highlight the glow on hover even more */
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card > * {
+  z-index: 1;
+  position: relative;
+}
+
+.feature-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.feature-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon-wrapper {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.1) rotate(5deg);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.feature-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.feature-expand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature-card:hover .feature-expand-icon {
+  background: rgba(255,255,255,0.1);
+}
+
+.feature-expand-icon.rotated {
+  transform: rotate(180deg);
+  background: rgba(255,255,255,0.1);
+}
+
+/* Accordion expand/collapse transition */
+.feature-expanded-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), margin-top 0.4s ease;
+  margin-top: 0;
+}
+
+.feature-expanded-content.open {
+  grid-template-rows: 1fr;
+  margin-top: 1.5rem;
+}
+
+.feature-expanded-inner {
+  overflow: hidden;
+}
+
+.feature-expanded-inner p {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.9;
+}

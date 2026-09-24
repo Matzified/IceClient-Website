@@ -1,32 +1,39 @@
-import React, { useEffect } from 'react';
-import { Shield, Package, Layers, Rocket, Zap } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Shield, Package, Layers, Rocket, Zap, Settings, UserCircle, Target, ChevronDown } from 'lucide-react';
 
 export function Features() {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
   const features = [
     {
-      icon: <Rocket size={24} className="highlight" />,
-      title: "Hyper-Threaded Engine",
-      desc: "Engineered from the ground up to squeeze every frame out of your hardware. Play smoother than ever before.",
-    },
-    {
       icon: <Package size={24} className="highlight" />,
-      title: "Bespoke Cosmetics",
+      title: "Custom Cosmetics",
       desc: "Express yourself with cloaks, wings, and emotes that seamlessly sync across the entire network.",
-    },
-    {
-      icon: <Layers size={24} className="highlight" />,
-      title: "Modular Overlay",
-      desc: "Fully customize your HUD with keystrokes, armor status, and potion effects. A beautiful overlay that stays out of your way.",
+      expandedText: "Stand out from the crowd with our expansive library of high-fidelity 3D cosmetics. Whether you prefer glowing wings, physics-enabled cloaks, or custom hats, our optimized rendering engine ensures your gear looks stunning without impacting your FPS. Plus, our cross-server sync guarantees everyone sees your style, no matter where you play."
     },
     {
       icon: <Shield size={24} className="highlight" />,
-      title: "Kernel-Level Auth",
-      desc: "Play on our partnered servers with complete peace of mind, knowing the playing field is entirely level.",
+      title: "Anti-Cheat",
+      desc: "Deep integration with server-side checks and internal tamper protection for the ultimate fair play environment.",
+      expandedText: "Our proprietary kernel-level anti-cheat ensures a 100% level playing field on all partnered servers. By detecting unauthorized modifications before they even load, we provide a cheat-free environment so you can focus purely on skill. Combined with advanced behavioral heuristics, fairness is guaranteed."
     },
     {
-      icon: <Zap size={24} className="highlight" />,
-      title: "Anti-Cheat Integration",
-      desc: "Deep integration with server-side checks and internal tamper protection for the ultimate fair play environment.",
+      icon: <UserCircle size={24} className="highlight" />,
+      title: "Profiles",
+      desc: "Instantly switch between completely custom configurations for different game modes.",
+      expandedText: "Don't settle for a one-size-fits-all setup. IceClient allows you to create unlimited, instantly swappable profiles tailored to specific game modes. Switch from your minimal PvP HUD to your feature-rich SMP setup with a single hotkey. Every setting, macro, and cosmetic choice is saved automatically."
+    },
+    {
+      icon: <Layers size={24} className="highlight" />,
+      title: "Modules",
+      desc: "Fully customize your HUD with keystrokes, armor status, and potion effects. A beautiful overlay that stays out of your way.",
+      expandedText: "Take total control of your interface with over 50 deeply customizable modules. From keystrokes and CPS counters to advanced armor status and direction HUDs, every element can be positioned, scaled, and styled with our intuitive drag-and-drop editor. Build the UI that perfectly matches your playstyle."
+    },
+    {
+      icon: <Rocket size={24} className="highlight" />,
+      title: "FPS Boost",
+      desc: "Engineered from the ground up to squeeze every frame out of your hardware. Play smoother than ever before.",
+      expandedText: "Experience Minecraft like never before. IceClient replaces the game's antiquated rendering pipeline with a custom hyper-threaded engine, offloading chunk updates and entity rendering to utilize all your CPU cores. Expect up to 4x higher framerates, zero stuttering, and incredibly smooth chunk loading."
     }
   ];
 
@@ -46,6 +53,10 @@ export function Features() {
     return () => observer.disconnect();
   }, []);
 
+  const toggleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <main className="main-content">
       <section className="container">
@@ -56,20 +67,35 @@ export function Features() {
           </p>
         </div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-          {features.map((f, i) => (
-            <div 
-              key={i} 
-              className="card animate-on-scroll"
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <div style={{ marginBottom: '1.5rem', width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--border-color)' }}>
-                {f.icon}
+        <div className="features-grid">
+          {features.map((f, i) => {
+            const isExpanded = expandedIndex === i;
+            return (
+              <div 
+                key={i} 
+                className={`card feature-card animate-on-scroll ${isExpanded ? 'expanded' : ''}`}
+                style={{ transitionDelay: `${i * 100}ms` }}
+                onClick={() => toggleExpand(i)}
+              >
+                <div className="feature-card-header">
+                  <div className="feature-icon-wrapper">
+                    {f.icon}
+                  </div>
+                  <h3 className="feature-title">{f.title}</h3>
+                  <div className={`feature-expand-icon ${isExpanded ? 'rotated' : ''}`}>
+                    <ChevronDown size={20} color="var(--text-secondary)" />
+                  </div>
+                </div>
+                <p className="feature-desc">{f.desc}</p>
+                
+                <div className={`feature-expanded-content ${isExpanded ? 'open' : ''}`}>
+                  <div className="feature-expanded-inner">
+                    <p>{f.expandedText}</p>
+                  </div>
+                </div>
               </div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.75rem' }}>{f.title}</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>{f.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     </main>
