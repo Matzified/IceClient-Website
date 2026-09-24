@@ -62,8 +62,8 @@ function Features() {
     },
     {
       icon: <Package size={28} />,
-      title: "Pre-installed Modpacks",
-      desc: "Jump straight into the action with curated, ready-to-play modpacks designed for PvP, survival, and mini-games.",
+      title: "Custom Cosmetics",
+      desc: "Express yourself with cloaks, wings, and emotes that seamlessly sync across the entire IceClient network.",
       animation: "slide-left"
     },
     {
