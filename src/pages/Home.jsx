@@ -1,36 +1,45 @@
 import { Link } from 'react-router-dom';
 
+const quickFacts = [
+  ['01', 'Fabric client', 'Built around the Java edition workflow.'],
+  ['02', 'Minecraft 1.21.11', 'The planned foundation for the next release line.'],
+  ['03', 'Device-code sign-in', 'Microsoft hosts authentication. Your password stays out of Ice Client.'],
+];
+
 export function Home() {
   return (
     <main className="main-content">
       <section className="container hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">FABRIC CLIENT / MINECRAFT JAVA</p>
-          <h1>A focused client for a clearer game.</h1>
-          <p className="hero-lede">Ice Client brings configurable HUD tools, practical quality-of-life controls, and a maintained launcher into one compact workspace.</p>
+          <p className="eyebrow">ICE CLIENT / JAVA EDITION</p>
+          <h1>Tools that stay out of the way.</h1>
+          <p className="hero-lede">A focused Fabric client with readable HUD modules, practical settings, and a launcher that keeps your accounts and versions organized.</p>
           <div className="hero-actions">
             <a className="btn btn-primary" href="https://github.com/Matzified/IceClient/releases" target="_blank" rel="noreferrer">View releases</a>
-            <Link to="/features" className="btn">Explore features</Link>
+            <Link to="/features" className="btn">See features</Link>
           </div>
-          <p className="hero-note">Current foundation: Minecraft 1.21.11. Version support is published only after testing.</p>
+          <p className="hero-note">No password collection. Supported versions are published after testing.</p>
         </div>
-        <div className="showcase" aria-label="Ice Client interface preview">
-          <div className="showcase-bar"><span>ICE CLIENT</span><span className="status-dot">READY</span></div>
-          <div className="showcase-body">
-            <aside><span className="active-line">HUD</span><span>PVP</span><span>VISUAL</span><span>UTILITY</span></aside>
-            <div className="module-stack">
-              <div className="module-card"><div><strong>Keystrokes</strong><small>Shows movement input</small></div><b>ON</b></div>
-              <div className="module-card"><div><strong>FPS Display</strong><small>Shows current frame rate</small></div><b>ON</b></div>
-              <div className="module-card muted-card"><div><strong>Custom POV</strong><small>Adjust field of view</small></div><b>OFF</b></div>
+        <div className="console-panel" aria-label="Ice Client interface preview">
+          <div className="console-top"><span className="console-brand">ICE / CONTROL</span><span className="console-state"><i /> READY</span></div>
+          <div className="console-content">
+            <div className="console-rail"><span className="rail-active">HUD</span><span>INPUT</span><span>VISUAL</span><span>UTILITY</span></div>
+            <div className="console-main">
+              <div className="console-heading"><div><small>PROFILE / DEFAULT</small><strong>Module overview</strong></div><span>1.21.11</span></div>
+              <div className="control-row"><div><strong>Keystrokes</strong><small>Movement input overlay</small></div><b>ON</b></div>
+              <div className="control-row"><div><strong>FPS display</strong><small>Current frame rate</small></div><b>ON</b></div>
+              <div className="control-row control-muted"><div><strong>Custom POV</strong><small>Field of view control</small></div><b>OFF</b></div>
             </div>
           </div>
-          <div className="showcase-footer"><span>RIGHT SHIFT</span><span>MODULES</span></div>
+          <div className="console-bottom"><span>RIGHT SHIFT</span><span>LOCAL SETTINGS</span></div>
         </div>
       </section>
-      <section className="container proof-grid" aria-label="Client overview">
-        <article><span className="section-kicker">01</span><h2>Readable controls</h2><p>Settings, keybinds, and module states stay visible while you configure the client.</p></article>
-        <article><span className="section-kicker">02</span><h2>Local by design</h2><p>Microsoft sign-in uses the hosted device-code flow. Ice Client never asks for your password.</p></article>
-        <article><span className="section-kicker">03</span><h2>Measured updates</h2><p>Supported versions and performance changes are published with the release they belong to.</p></article>
+      <section className="container facts" aria-label="Ice Client overview">
+        {quickFacts.map(([number, title, description]) => <article key={number}><span className="fact-number">{number}</span><div><h2>{title}</h2><p>{description}</p></div></article>)}
+      </section>
+      <section className="container release-strip">
+        <div><p className="section-kicker">START HERE</p><h2>Download the launcher</h2><p>Use the launcher to manage profiles, sign in with Microsoft, and start a supported installation.</p></div>
+        <a className="btn btn-primary" href="https://github.com/Matzified/IceClient/releases" target="_blank" rel="noreferrer">Open releases</a>
       </section>
     </main>
   );
