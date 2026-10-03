@@ -6,6 +6,13 @@ const quickFacts = [
   ['03', 'Device-code sign-in', 'Microsoft hosts authentication. Your password stays out of Ice Client.'],
 ];
 
+const surfaces = [
+  ['Launcher', 'Accounts, profiles, versions, and launch actions in one place.'],
+  ['HUD modules', 'Readable overlays for keystrokes, FPS, coordinates, and other local tools.'],
+  ['Profiles', 'Keep settings grouped by installation so changes remain predictable.'],
+  ['Release notes', 'See what changed before you update and keep the installed version clear.'],
+];
+
 export function Home() {
   return (
     <main className="main-content">
@@ -36,6 +43,10 @@ export function Home() {
       </section>
       <section className="container facts" aria-label="Ice Client overview">
         {quickFacts.map(([number, title, description]) => <article key={number}><span className="fact-number">{number}</span><div><h2>{title}</h2><p>{description}</p></div></article>)}
+      </section>
+      <section className="container surfaces">
+        <div className="section-header left"><p className="section-kicker">THE WORKSPACE</p><h2 className="section-title">A small set of useful surfaces.</h2><p className="section-subtitle">The launcher and in-game client share the same focus: make the next action obvious.</p></div>
+        <div className="surface-grid">{surfaces.map(([title, description]) => <article className="surface-card" key={title}><h3>{title}</h3><p>{description}</p><Link to={title === 'HUD modules' ? '/features' : '/download'}>{title === 'Release notes' ? 'View releases' : 'Learn more'}</Link></article>)}</div>
       </section>
       <section className="container release-strip">
         <div><p className="section-kicker">START HERE</p><h2>Download the launcher</h2><p>Use the launcher to manage profiles, sign in with Microsoft, and start a supported installation.</p></div>
