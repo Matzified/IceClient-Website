@@ -11,6 +11,7 @@ function NavbarShell() {
         <nav className="nav-links" aria-label="Main navigation">
           <Link to="/">Home</Link>
           <Link to="/features">Features</Link>
+          <Link to="/download">Download</Link>
           <a href="https://github.com/Matzified/IceClient/releases" target="_blank" rel="noreferrer">Releases</a>
         </nav>
       </div>
