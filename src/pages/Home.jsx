@@ -1,101 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { Download, ChevronRight, Search } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-
-function Hero() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const navigate = useNavigate();
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/player/${searchQuery.trim()}`);
-    }
-  };
-
-  return (
-    <section className="container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', paddingTop: '100px' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', width: '100%' }}>
-        
-        {/* Left Side: Typography & Actions */}
-        <div className="hero-content">
-          <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '99px', fontSize: '0.875rem', fontWeight: 500, marginBottom: '1.5rem', border: '1px solid var(--border-color)' }}>
-            ICECLIENT V3 IS LIVE
-          </div>
-          
-          <img src="/logo.png" alt="Ice Client Logo" className="animate-on-scroll" style={{ maxWidth: '400px', marginBottom: '2rem' }} />
-          
-          <h1 className="section-title animate-on-scroll delay-100" style={{ textAlign: 'left', marginBottom: '1.5rem', fontSize: '4rem', lineHeight: 1.1 }}>
-            Shatter <br /> The <span className="highlight">Limits.</span>
-          </h1>
-          
-          <p className="animate-on-scroll delay-200" style={{ color: 'var(--text-secondary)', fontSize: '1.125rem', marginBottom: '2.5rem', maxWidth: '480px' }}>
-            Hand-forged for the competitive elite. Zero bloat. Pure performance wrapped in an uncompromisingly clean interface.
-          </p>
-
-          <form onSubmit={handleSearch} className="animate-on-scroll delay-300" style={{ marginBottom: '2.5rem', display: 'flex', gap: '0.5rem', maxWidth: '400px' }}>
-            <div style={{ position: 'relative', flex: 1 }}>
-              <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
-              <input 
-                type="text" 
-                placeholder="Analyze a Player..." 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{ width: '100%', paddingLeft: '2.5rem' }}
-              />
-            </div>
-            <button type="submit" className="btn btn-outline" style={{ padding: '0.75rem 1rem' }}>
-              Search
-            </button>
-          </form>
-
-          <div className="animate-on-scroll delay-300" style={{ display: 'flex', gap: '1rem' }}>
-            <button className="btn btn-primary" style={{ padding: '0.875rem 1.5rem' }}>
-              <Download size={20} />
-              Download for Windows
-            </button>
-            <button onClick={() => navigate('/features')} className="btn btn-outline" style={{ padding: '0.875rem 1.5rem' }}>
-              Features <ChevronRight size={18} />
-            </button>
-          </div>
-        </div>
-
-        {/* Right Side: Showcase */}
-        <div className="hero-interactive animate-on-scroll delay-200" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div className="card" style={{ width: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Ready to Dominate?</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Check how much FPS you can get.</p>
-            <button onClick={() => navigate('/performance')} className="btn btn-outline">
-              Hardware Speculator
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
-}
+import { Link } from 'react-router-dom';
 
 export function Home() {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className="main-content">
-      <Hero />
+      <section className="container hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow">FABRIC CLIENT / MINECRAFT JAVA</p>
+          <h1>A focused client for a clearer game.</h1>
+          <p className="hero-lede">Ice Client brings configurable HUD tools, practical quality-of-life controls, and a maintained launcher into one compact workspace.</p>
+          <div className="hero-actions">
+            <a className="btn btn-primary" href="https://github.com/Matzified/IceClient/releases" target="_blank" rel="noreferrer">View releases</a>
+            <Link to="/features" className="btn">Explore features</Link>
+          </div>
+          <p className="hero-note">Current foundation: Minecraft 1.21.11. Version support is published only after testing.</p>
+        </div>
+        <div className="showcase" aria-label="Ice Client interface preview">
+          <div className="showcase-bar"><span>ICE CLIENT</span><span className="status-dot">READY</span></div>
+          <div className="showcase-body">
+            <aside><span className="active-line">HUD</span><span>PVP</span><span>VISUAL</span><span>UTILITY</span></aside>
+            <div className="module-stack">
+              <div className="module-card"><div><strong>Keystrokes</strong><small>Shows movement input</small></div><b>ON</b></div>
+              <div className="module-card"><div><strong>FPS Display</strong><small>Shows current frame rate</small></div><b>ON</b></div>
+              <div className="module-card muted-card"><div><strong>Custom POV</strong><small>Adjust field of view</small></div><b>OFF</b></div>
+            </div>
+          </div>
+          <div className="showcase-footer"><span>RIGHT SHIFT</span><span>MODULES</span></div>
+        </div>
+      </section>
+      <section className="container proof-grid" aria-label="Client overview">
+        <article><span className="section-kicker">01</span><h2>Readable controls</h2><p>Settings, keybinds, and module states stay visible while you configure the client.</p></article>
+        <article><span className="section-kicker">02</span><h2>Local by design</h2><p>Microsoft sign-in uses the hosted device-code flow. Ice Client never asks for your password.</p></article>
+        <article><span className="section-kicker">03</span><h2>Measured updates</h2><p>Supported versions and performance changes are published with the release they belong to.</p></article>
+      </section>
     </main>
   );
 }
